@@ -1,0 +1,65 @@
+* {
+    margin: 0;
+    padding: 0;
+   }
+
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@600&display=swap');
+.wrapper {
+    font-family: manrope;
+  font-size: 20px;
+    width: 100vw;
+    min-height: 100%;
+    display: block;
+    background: linear-gradient(180deg, white 0%, #A96AF7 100%);
+}
+
+.container {
+    vertical-align: middle;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.answers {
+    padding-top:10px; 
+    width: 50%; 
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.question {
+    display: none;
+}
+
+
+.main {
+    font-family: manrope;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: skyblue;
+    border: none;
+    color: white;
+     width: 300px;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    margin-top: 5px; 
+}
+
+.pictures {
+    max-height: 20%;
+    max-width: 50%;
+
+}
+
+.num_answ {
+    text-align: left;
+}
+
+#prev {
+    background-color: deepskyblue;
+}
+
+#bar {
+    padding-top: 10px;
+}
