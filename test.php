@@ -1,5 +1,5 @@
 <html>
-      <link rel="stylesheet" type="text/css" href="style.css">
+      <link rel="stylesheet" type="text/css" href="css/style.css">
     
     <body>
         <div class= "wrapper">    
@@ -7,11 +7,12 @@
    
         <div id="bar">
             Добро пожаловать на тест, посвященный знанию музыки!
+            <a href="alg.php">Посмотреть результаты прошедших пользователей</a>
         </div>
                 
         <progress id="progres" value="0" max="9" style="width:300px;"></progress>
                   
-        <form action="" method="POST" name="form">
+        <form action="results.php" method="POST" name="form">
             
              <div class="question">
             Введите ваше имя:
@@ -129,11 +130,11 @@
                     </div>
                     <div class="num_answ">
                         <input type="checkbox" id="3_1" name="a_3_1">
-                            Morgenshtern
+                            Seemee
                     </div>
                     <div class="num_answ">
                         <input type="checkbox" id="3_2" name="a_3_2">
-                            Yanix
+                            Mayot
                     </div>
                     <div class="num_answ">
                         <input name="3" type="checkbox">
@@ -192,113 +193,9 @@
                         <input type="button" id = "next" class="main" value="Начать тест!" onclick="Test(1)" style = "display:block">	
                         <input type="button" id = "prev" class="main" value="Предыдущий вопрос" onclick="Test(-1)" style = "display:none">
             
-                      
-            
-<?php
-
-require_once 'connection.php';
-
-$name = $_POST['id'] ;
-
-$array = array();
-
-            
-$answers = 0;
 
 
-if (isset($_POST['check'])) {
-    /*1*/
 
-    if (isset($_POST['a_1'])) {
-        $answers++;
-        $array[1] = 1;
-    } else {
-        $array[1] = 0;
-    }
-
-    /*2*/
-    if (isset($_POST['a_2'])) {
-        $answers++;
-        $array[2] = 1;
-    } else {
-        $array[2] = 0;
-    }
-
-    /*3*/
-
-    $var = "";
-    $field = $_REQUEST['list_1'];
-    if (strcasecmp($field, "4") == 0) {
-        $answers++;
-        $array[3] = 1;
-    } else {
-        $array[3] = 0;
-    }
-
-    /*4*/
-
-    $var = "";
-    $field = $_REQUEST['list_2'];
-    if (strcasecmp($field, "3") == 0) {
-        $answers++;
-        $array[4] = 1;
-    } else {
-        $array[4] = 0;
-    }
-
-
-    /*5*/
-    if (isset($_POST['a_3_1']) && isset($_POST['a_3_2']) && isset($_POST['a_3_3'])) {
-        $answers++;
-        $array[5] = 1;
-    } else {
-        $array[5] = 0;
-    }
-
-
-    /*6*/
-    if (isset($_POST['a_6']) && (strcasecmp($_POST['a_6'], "пазлы") == 0 or strcasecmp($_POST['a_6'], "puzzles") == 0)) {
-        $answers++;
-        $array[6] = 1;
-    } else {
-        $array[6] = 0;
-    }
-
-    /*7*/
-    if (isset($_POST['a_7']) && (strcasecmp($_POST['a_7'], "поп") == 0 or strcasecmp($_POST['a_7'], "pop") == 0)) {
-        $answers++;
-        $array[7] = 1;
-    } else {
-        $array[7] = 0;
-    }
-
-
-    /*8*/
-    $var = "";
-    $field = $_REQUEST['list_3'];
-    if (strcasecmp($field, "2") == 0) {
-        $answers++;
-        $array[8] = 1;
-    } else {
-        $array[8] = 0;
-    }
-
-
-    $connect = mysqli_connect('localhost', 'root', '','users');
-
-    mysqli_query( $connect,"INSERT INTO `results` (`id`, `name`, `answer_1`, `answer_2`, `answer_3`, `answer_4`, `answer_5`, `answer_6`, `answer_7`, `answer_8`) VALUES (NULL, '$name', '$array[1]',  '$array[2]',  '$array[3]', $array[4], '$array[5]',  '$array[6]',  '$array[7]',  '$array[8]')");
-
-   echo mysqli_error($connect);
-
-}
-
-?>
-             <div id="answer">
-            <p>Вы верно дали <span><?=$answers ?><span> ответа/ов из 8</p>
-                <br> 
-                <a href="alg.php">Посмотреть список лидеров</a> 
-                </div>
-            
         </div>
     </div>
     </body>

@@ -1,20 +1,20 @@
+<html>
+
+<link rel="stylesheet" type="text/css" href="css/style.css">
+
 <head>
 <title>Результаты</title>
 </head>
-<style>
-    th,td {
-        padding: 5px;
-        background: cadetblue;
-    }
 
-    </style>
-<body> 
+<body>
+<wrapper>
 <a href="test.php">Вернуться к тесту</a>
 <br>
-</body>
+
 <?php
 
-require_once 'connection.php';
+
+$connect = mysqli_connect('localhost', 'root', '','users');
 
     $result = mysqli_query($connect,"SELECT * FROM results");
     $result = mysqli_fetch_all($result);
@@ -54,4 +54,6 @@ require_once 'connection.php';
     }
 
 ?>
+</wrapper>
+</body>
 </html>

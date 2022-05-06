@@ -4,14 +4,12 @@ var result = 0;
 function Test(x) 
 {    
 
-
-    
       if(count==0) 
       {
          document.getElementById('bar').style.display = "none";
           document.getElementById('next').value='Следующий вопрос';
          document.getElementById('prev').style.display = "block";
-          document.getElementById('answer').style.display = "none";
+
           
       }
     
@@ -57,7 +55,6 @@ function Test(x)
     demoClasses[count+x].style.display = "block";
        
 }
-
 
 function answers()
 {
