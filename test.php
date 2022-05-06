@@ -185,7 +185,7 @@
                 </div> 
             </div>
             
-            <input type="submit" id = "result" name = "check" class="main" value="Завершить тест" onclick= "Test(9)" style = "display:none">
+            <input type="submit" id = "result" name = "check" class="main" value="Завершить тест"  style = "display:none">
             
            
     </form>  
@@ -196,122 +196,105 @@
             
 <?php
 
+require_once 'connection.php';
+
 $name = $_POST['id'] ;
-            
-$fh = fopen("users.txt", a);
+
 $array = array();
-$array[0] = $name;           
+
             
 $answers = 0;
 
 
-if (isset($_POST['check']))
-{
-	/*1*/
-    
-    if (isset($_POST['a_1']))
-	{
-		$answers++ ;
-          $array[1] = 1;
-	}
-    else 
-    {
+if (isset($_POST['check'])) {
+    /*1*/
+
+    if (isset($_POST['a_1'])) {
+        $answers++;
+        $array[1] = 1;
+    } else {
         $array[1] = 0;
     }
-    
-	/*2*/if (isset($_POST['a_2']))
-	{
-		$answers++ ;
-          $array[2] = 1;
-	}
-    else 
-    {
+
+    /*2*/
+    if (isset($_POST['a_2'])) {
+        $answers++;
+        $array[2] = 1;
+    } else {
         $array[2] = 0;
     }
-    
-	/*3*/
-    
-	$var = "";
-	$field = $_REQUEST['list_1'];
-	if (strcasecmp($field, "4") == 0) 
-	{
-		$answers++;
+
+    /*3*/
+
+    $var = "";
+    $field = $_REQUEST['list_1'];
+    if (strcasecmp($field, "4") == 0) {
+        $answers++;
         $array[3] = 1;
-	}
-    else 
-    {
+    } else {
         $array[3] = 0;
     }
-    
+
     /*4*/
 
-	$var = "";
-	$field = $_REQUEST['list_2'];
-	if (strcasecmp($field, "3") == 0) 
-	{
-		$answers++ ;
-	    $array[4] = 1;
-	}
-    else 
-    {
+    $var = "";
+    $field = $_REQUEST['list_2'];
+    if (strcasecmp($field, "3") == 0) {
+        $answers++;
+        $array[4] = 1;
+    } else {
         $array[4] = 0;
     }
-		
+
 
     /*5*/
-    if (isset($_POST['a_3_1']) && isset($_POST['a_3_2']) && isset($_POST['a_3_3']))
-	{
-		$answers++ ;
+    if (isset($_POST['a_3_1']) && isset($_POST['a_3_2']) && isset($_POST['a_3_3'])) {
+        $answers++;
         $array[5] = 1;
-	}
-    else 
-    {
+    } else {
         $array[5] = 0;
     }
-	
-    
-	/*6*/
-            if (isset($_POST['a_6']) && (strcasecmp($_POST['a_6'], "пазлы") == 0 or strcasecmp($_POST['a_6'], "puzzles") == 0 )) 
-	{
-		$answers++ ;
+
+
+    /*6*/
+    if (isset($_POST['a_6']) && (strcasecmp($_POST['a_6'], "пазлы") == 0 or strcasecmp($_POST['a_6'], "puzzles") == 0)) {
+        $answers++;
         $array[6] = 1;
-	}
-    else 
-    {
+    } else {
         $array[6] = 0;
     }
-	
-	/*7*/
-                if (isset($_POST['a_7']) && (strcasecmp($_POST['a_7'], "поп") == 0 or strcasecmp($_POST['a_7'], "pop") == 0 )) 
-	{
-		$answers++ ;
-	     $array[7] = 1;
-	}
-    else 
-    {
+
+    /*7*/
+    if (isset($_POST['a_7']) && (strcasecmp($_POST['a_7'], "поп") == 0 or strcasecmp($_POST['a_7'], "pop") == 0)) {
+        $answers++;
+        $array[7] = 1;
+    } else {
         $array[7] = 0;
     }
-	
-            
-	/*8*/$var = "";
-	$field = $_REQUEST['list_3'];
-	if (strcasecmp($field, "2") == 0) 
-	{
-		$answers++;
+
+
+    /*8*/
+    $var = "";
+    $field = $_REQUEST['list_3'];
+    if (strcasecmp($field, "2") == 0) {
+        $answers++;
         $array[8] = 1;
-	}
-    else 
-    {
+    } else {
         $array[8] = 0;
     }
-    
-    file_put_contents("users.txt" , "\n".implode("|", $array ), FILE_APPEND );
-    
+
+
+    $connect = mysqli_connect('localhost', 'root', '','users');
+
+    mysqli_query( $connect,"INSERT INTO `results` (`id`, `name`, `answer_1`, `answer_2`, `answer_3`, `answer_4`, `answer_5`, `answer_6`, `answer_7`, `answer_8`) VALUES (NULL, '$name', '$array[1]',  '$array[2]',  '$array[3]', $array[4], '$array[5]',  '$array[6]',  '$array[7]',  '$array[8]')");
+
+   echo mysqli_error($connect);
+
 }
 
 ?>
              <div id="answer">
-            <p>Вы верно дали <span><? echo $answers ?><span> ответа/ов из 8</p>
+            <p>Вы верно дали <span><?=$answers ?><span> ответа/ов из 8</p>
                 <br> 
                 <a href="alg.php">Посмотреть список лидеров</a> 
                 </div>

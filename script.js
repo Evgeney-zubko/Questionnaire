@@ -42,22 +42,7 @@ function Test(x)
     
     count+=x; 
     
-         if (count>10)
-        {
-            const demoClasses = document.querySelectorAll('div.question');
-            
-             demoClasses.forEach(element => {
-            element.style.display = "none";});
-            
-             document.getElementById('bar').style.display = "none";
-             document.getElementById('progres').style.display = "none";
-           document.getElementById('next').style.display = "none";
-         document.getElementById('prev').style.display = "none";
-           document.getElementById('result').style.display = "none";
-            
-          document.getElementById('answer').style.display = "block"; 
-            return;
-        }
+
     
      document.getElementById('bar').innerHTML= "Вопрос " + count;
     

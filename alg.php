@@ -13,7 +13,9 @@
 <br>
 </body>
 <?php
-    $connect = mysqli_connect('localhost', 'root', '','users');
+
+require_once 'connection.php';
+
     $result = mysqli_query($connect,"SELECT * FROM results");
     $result = mysqli_fetch_all($result);
 
